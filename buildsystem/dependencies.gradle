@@ -1,0 +1,81 @@
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+ext {
+    // Android
+    androidMinSdkVersion = 21
+    androidTargetSdkVersion = 30
+    androidCompileSdkVersion = 30
+
+    // Libraries+
+    kotlinCoreVersion = '1.3.2'
+    kotlinJdkVersion = '1.4.20'
+    appCompatVersion = '1.3.0-alpha02'
+    legacySupportV4Version = '1.0.0'
+    recyclerViewVersion = '1.2.0-alpha01'
+    daggerVersion = '2.30.1'
+    rxJavaVersion = '3.0.7'
+    rxAndroidVersion = '3.0.0'
+    javaxInjectVersion = '1'
+    gsonVersion = '2.8.6'
+    retrofitVersion = '2.9.0'
+    retrofitLoggingVersion = '4.9.0'
+    retrofitAdapterVersion = '2.9.0'
+    gsonConverterVersion = '2.9.0'
+    glideVersion = '4.11.0'
+    roomVersion = '2.2.5'
+    roomCompilerVersion = '2.2.4'
+    materialVersion = '1.3.0-alpha03'
+    shimmerVersion = '0.5.0'
+
+
+    presentationDependencies = [
+            kotlinCore                : "androidx.core:core-ktx:${kotlinCoreVersion}",
+            kotlinJdk                 : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinJdkVersion}",
+            javaxInject               : "javax.inject:javax.inject:${javaxInjectVersion}",
+            appCompat                 : "androidx.appcompat:appcompat:${appCompatVersion}",
+            legacySupport             : "androidx.legacy:legacy-support-v4:${legacySupportV4Version}",
+            recyclerView              : "androidx.recyclerview:recyclerview:${recyclerViewVersion}",
+            daggerCompiler            : "com.google.dagger:dagger-compiler:${daggerVersion}",
+            dagger                    : "com.google.dagger:dagger:${daggerVersion}",
+            rxJava                    : "io.reactivex.rxjava3:rxjava:${rxJavaVersion}",
+            rxAndroid                 : "io.reactivex.rxjava3:rxandroid:${rxAndroidVersion}",
+            retrofit                  : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            retrofitLogging           : "com.squareup.okhttp3:logging-interceptor:${retrofitLoggingVersion}",
+            retrofitAdapter           : "com.squareup.retrofit2:adapter-rxjava3:${retrofitAdapterVersion}",
+            gson                      : "com.google.code.gson:gson:${gsonVersion}",
+            gsonConverter             : "com.squareup.retrofit2:converter-gson:${gsonConverterVersion}",
+            glide                     : "com.github.bumptech.glide:glide:${glideVersion}",
+            glideCompiler             : "com.github.bumptech.glide:compiler:${glideVersion}",
+            glideHttp                 : "com.github.bumptech.glide:okhttp3-integration:${glideVersion}",
+            room                      : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler              : "androidx.room:room-compiler:${roomVersion}",
+            material                  : "com.google.android.material:material:${materialVersion}",
+            shimmer                   : "com.facebook.shimmer:shimmer:${shimmerVersion}"
+    ]
+
+    domainDependencies = [
+            kotlinCore        : "androidx.core:core-ktx:${kotlinCoreVersion}",
+            kotlinJdk         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinJdkVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            rxJava            : "io.reactivex.rxjava3:rxjava:${rxJavaVersion}",
+            rxAndroid         : "io.reactivex.rxjava3:rxandroid:${rxAndroidVersion}"
+    ]
+
+    dataDependencies = [
+            kotlinCore        : "androidx.core:core-ktx:${kotlinCoreVersion}",
+            kotlinJdk         : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${kotlinJdkVersion}",
+            gson              : "com.google.code.gson:gson:${gsonVersion}",
+            rxJava            : "io.reactivex.rxjava3:rxjava:${rxJavaVersion}",
+            rxAndroid         : "io.reactivex.rxjava3:rxandroid:${rxAndroidVersion}",
+            javaxInject       : "javax.inject:javax.inject:${javaxInjectVersion}",
+            retrofit          : "com.squareup.retrofit2:retrofit:${retrofitVersion}",
+            room              : "androidx.room:room-runtime:${roomVersion}",
+            roomCompiler      : "androidx.room:room-compiler:${roomVersion}"
+
+    ]
+
+}

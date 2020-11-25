@@ -1,0 +1,22 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: '../config.gradle'
+
+dependencies {
+    def dataDependencies = rootProject.ext.dataDependencies
+
+    implementation project(':domain')
+
+    // Libraries
+    implementation dataDependencies.javaxInject
+    implementation dataDependencies.gson
+    implementation dataDependencies.rxJava
+    implementation dataDependencies.rxAndroid
+    implementation dataDependencies.retrofit
+    implementation dataDependencies.room
+    annotationProcessor dataDependencies.roomCompiler
+    implementation dataDependencies.kotlinCore
+    implementation dataDependencies.kotlinJdk
+
+}

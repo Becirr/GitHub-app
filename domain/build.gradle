@@ -1,0 +1,15 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+apply from: '../config.gradle'
+
+dependencies {
+    def domainDependencies = rootProject.ext.domainDependencies
+
+    implementation domainDependencies.javaxInject
+    implementation domainDependencies.rxJava
+    implementation domainDependencies.rxAndroid
+    implementation domainDependencies.kotlinCore
+    implementation domainDependencies.kotlinJdk
+
+}
