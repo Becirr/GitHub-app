@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="HeadingStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/color_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+    </style>
+
+    <style name="NormalText" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/color_text_primary_dark</item>
+        <item name="android:textSize">@dimen/text_size_normal</item>
+    </style>
+
+    <style name="NormalText.Bold" parent="NormalText">
+        <item name="android:textStyle">bold</item>
+    </style>
+
+</resources>

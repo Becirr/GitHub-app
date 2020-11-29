@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">GitHubApp</string>
+    <string name="sign_in_to_github">Sign in to GitHub</string>
+    <string name="username_or_email">Username or email address</string>
+    <string name="password">Password</string>
+    <string name="sign_in">Sign in</string>
+    <string name="search">Search</string>
+    <string name="search_or_jump_to">Search or jump to...</string>
+    <string name="watch">Watch</string>
+    <string name="fork">Fork</string>
+    <string name="issue">Issue</string>
+
+    <string name="updated">Updated %s</string>
+
+    <!-- Error Messages -->
+    <string name="error_malformed_json">Oops! We hit an error. Try again later!</string>
+    <string name="error_timeout">Oooops! We could not capture your request in time. Please try again!</string>
+    <string name="error_no_internet_connection">Oh! You are not connected to a wifi or cellular nodeItemRowList network. Please connect and try again!</string>
+    <string name="error_unknown">Something went wrong!</string>
 </resources>

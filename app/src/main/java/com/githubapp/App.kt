@@ -20,6 +20,10 @@ class App : Application() {
             .build()
     }
 
+    fun getAppComponent(): AppComponent {
+        return appComponent
+    }
+
     companion object {
         var context: Context? = null
     }

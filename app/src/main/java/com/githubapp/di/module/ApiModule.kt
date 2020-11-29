@@ -2,16 +2,18 @@ package com.githubapp.di.module
 
 import com.githubapp.Constants
 import com.githubapp.data.api.ApiService
+import com.githubapp.data.repository.SearchRepositoryImpl
+import com.githubapp.domain.repository.SearchRepository
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
-import javax.inject.Named
-import javax.inject.Singleton
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Named
+import javax.inject.Singleton
 
 @Module
 class ApiModule {
@@ -40,6 +42,15 @@ class ApiModule {
         return GsonBuilder()
             .setLenient()
             .create()
+    }
+
+    /**
+     * Repository
+     */
+    @Provides
+    @Singleton
+    fun provideSearchRepository(searchRepository: SearchRepositoryImpl): SearchRepository {
+        return searchRepository
     }
 
 }
