@@ -18,7 +18,20 @@ class OwnerMapper @Inject internal constructor() {
         if (ownerEntity == null) {
             return null
         }
-        return Owner(ownerEntity.avatarUrl)
+        return Owner(ownerEntity.login,
+            ownerEntity.avatarUrl,
+            ownerEntity.htmlUrl,
+            ownerEntity.blog,
+            ownerEntity.location,
+            ownerEntity.bio,
+            ownerEntity.name,
+            ownerEntity.publicRepos,
+            ownerEntity.publicGists,
+            ownerEntity.followers,
+            ownerEntity.following,
+            ownerEntity.hireable,
+            ownerEntity.email,
+            ownerEntity.company)
     }
 
     /**

@@ -34,6 +34,10 @@
     <dimen name="radius_normal">8dp</dimen>
     <dimen name="radius_medium">12dp</dimen>
     <dimen name="radius_large">20dp</dimen>
+    <dimen name="radius_xlarge">48dp</dimen>
+
+    <!-- icons -->
+    <dimen name="icon_size_medium">36dp</dimen>
 
     <!-- login -->
     <dimen name="login_input_field_height">40dp</dimen>
@@ -41,5 +45,14 @@
     <!-- repository -->
     <dimen name="repository_owner_thumbnail_size">80dp</dimen>
     <dimen name="repository_icons_size">20dp</dimen>
+
+    <!-- user details -->
+    <dimen name="user_details_background_size">330dp</dimen>
+    <dimen name="user_details_avatar_size">170dp</dimen>
+    <dimen name="user_details_avatar_margin_top">55dp</dimen>
+    <dimen name="user_details_background_margin_top">-50dp</dimen>
+
+    <!-- progress size -->
+    <dimen name="progress_size">60dp</dimen>
 
 </resources>

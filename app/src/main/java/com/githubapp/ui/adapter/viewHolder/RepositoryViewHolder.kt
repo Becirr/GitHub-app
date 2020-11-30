@@ -11,6 +11,7 @@ import com.githubapp.databinding.ItemRepositoryBinding
 import com.githubapp.domain.model.Repository
 import com.githubapp.ui.screen.base.BaseOnClickListener
 import com.githubapp.ui.screen.base.BaseViewHolder
+import com.githubapp.ui.screen.userDetails.UserDetailsActivity
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
@@ -39,6 +40,9 @@ class RepositoryViewHolder(binding: ViewDataBinding, recyclerView: RecyclerView)
         }
         if (adapterPosition == adapterSize - 1) {
             binding.divider.visibility = View.INVISIBLE
+        }
+        binding.thumbnail.setOnClickListener { view ->
+            item.owner?.let { UserDetailsActivity.open(view.context, it) }
         }
     }
 

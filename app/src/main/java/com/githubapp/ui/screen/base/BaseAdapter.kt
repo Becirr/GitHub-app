@@ -15,7 +15,7 @@ abstract class BaseAdapter<T, VH : BaseViewHolder<T>> protected constructor(cont
     private val layoutInflater: LayoutInflater = LayoutInflater.from(context)
     private val items: MutableList<T> = ArrayList()
 
-    protected var onClickListener: BaseOnClickListener<T>? = null
+    var onClickListener: BaseOnClickListener<T>? = null
     protected var recyclerView: RecyclerView? = null
 
     abstract override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH

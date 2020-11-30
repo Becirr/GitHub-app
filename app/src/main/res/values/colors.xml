@@ -8,8 +8,11 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="color_text_primary">#586069</color>
-    <color name="form_background">#f6f8fa</color>
+    <color name="form_background">#f6f9ff</color>
     <color name="color_text_primary_dark">#000000</color>
+    <color name="color_title">#3a2b45</color>
+    <color name="color_subtitle">#a9acbb</color>
     <color name="color_accent">#2ea44f</color>
     <color name="color_text_secondary">#206fd9</color>
+    <color name="color_text_secondary_light">#9bc1f2</color>
 </resources>

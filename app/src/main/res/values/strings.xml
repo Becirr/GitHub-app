@@ -9,6 +9,14 @@
     <string name="watch">Watch</string>
     <string name="fork">Fork</string>
     <string name="issue">Issue</string>
+    <string name="open_to_work">Open to work</string>
+    <string name="biography">Biography</string>
+    <string name="gists">Gists</string>
+    <string name="repositories">Repositories</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="blog">Blog</string>
+    <string name="view_details">View details</string>
 
     <string name="updated">Updated %s</string>
 
