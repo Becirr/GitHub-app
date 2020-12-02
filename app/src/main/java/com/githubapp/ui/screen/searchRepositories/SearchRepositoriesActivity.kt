@@ -25,6 +25,7 @@ import com.githubapp.domain.model.Owner
 import com.githubapp.domain.model.Repository
 import com.githubapp.ui.adapter.RepositoryAdapter
 import com.githubapp.ui.screen.base.BaseActivity
+import com.githubapp.ui.screen.userDetails.UserDetailsActivity
 import com.githubapp.util.DeviceUtils
 import javax.inject.Inject
 
@@ -42,6 +43,8 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     private var sortItemId = R.id.sortByBestMatch
 
     private var code: String? = null
+
+    private var owner: Owner? = null
 
     override val layoutId: Int
         get() = R.layout.activity_search_repositories
@@ -132,6 +135,15 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 }
             }
         )
+        viewDataBinding?.thumbnail?.setOnClickListener {
+            owner?.let { UserDetailsActivity.open(this, it) }
+        }
+        viewDataBinding?.home?.setOnClickListener {
+            viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
+            viewDataBinding?.repositoryRecycler?.visibility = View.GONE
+            repositoryAdapter?.clear()
+            viewDataBinding?.userLayout?.visibility = View.VISIBLE
+        }
     }
 
     private fun search(query: String) {
@@ -162,7 +174,9 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     }
 
     override fun showRepositories(repositories: List<Repository>) {
+        viewDataBinding?.userLayout?.visibility = View.GONE
         viewDataBinding?.progress?.visibility = View.GONE
+        viewDataBinding?.repositoryRecycler?.visibility = View.VISIBLE
         repositoryAdapter?.setItems(repositories)
     }
 
@@ -172,6 +186,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     }
 
     override fun showUser(owner: Owner) {
+        this.owner = owner
         viewDataBinding?.welcome?.text = resources.getString(R.string.welcome, owner.login)
         if (viewDataBinding != null) {
             Glide.with(this)
