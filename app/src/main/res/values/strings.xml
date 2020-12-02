@@ -7,8 +7,9 @@
     <string name="search">Search</string>
     <string name="search_or_jump_to">Search or jump to...</string>
     <string name="watch">Watch</string>
+    <string name="star">Star</string>
     <string name="fork">Fork</string>
-    <string name="issue">Issue</string>
+    <string name="issue">Issues</string>
     <string name="open_to_work">Open to work</string>
     <string name="biography">Biography</string>
     <string name="gists">Gists</string>
@@ -19,6 +20,9 @@
     <string name="view_details">View details</string>
 
     <string name="updated">Updated %s</string>
+    <string name="created">Created %s</string>
+    <string name="updated_new_line">Updated\n %s</string>
+    <string name="created_new_line">Created\n %s</string>
 
     <!-- Error Messages -->
     <string name="error_malformed_json">Oops! We hit an error. Try again later!</string>

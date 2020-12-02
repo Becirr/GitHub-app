@@ -2,8 +2,10 @@ package com.githubapp.di.module
 
 import com.githubapp.Constants
 import com.githubapp.data.api.ApiService
+import com.githubapp.data.repository.RepositoryDetailsRepositoryImpl
 import com.githubapp.data.repository.SearchRepositoryImpl
 import com.githubapp.data.repository.UserDetailsRepositoryImpl
+import com.githubapp.domain.repository.RepositoryDetailsRepository
 import com.githubapp.domain.repository.SearchRepository
 import com.githubapp.domain.repository.UserDetailsRepository
 import com.google.gson.Gson
@@ -59,6 +61,12 @@ class ApiModule {
     @Singleton
     fun provideUserDetailsRepository(userDetailsRepository: UserDetailsRepositoryImpl): UserDetailsRepository {
         return userDetailsRepository
+    }
+
+    @Provides
+    @Singleton
+    fun provideRepositoryDetailsRepository(repositoryDetailsRepository: RepositoryDetailsRepositoryImpl): RepositoryDetailsRepository {
+        return repositoryDetailsRepository
     }
 
 }

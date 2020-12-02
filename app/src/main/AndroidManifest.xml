@@ -17,16 +17,26 @@
         <activity
             android:name=".LoginActivity"
             android:theme="@style/ThemeLogin"
-            android:windowSoftInputMode="adjustResize"/>
-        <activity android:name=".ui.screen.searchRepositories.SearchRepositoriesActivity">
+            android:windowSoftInputMode="adjustResize" />
+        <activity
+            android:name=".ui.screen.searchRepositories.SearchRepositoriesActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.screen.userDetails.UserDetailsActivity"/>
-        <activity android:name=".ui.screen.webView.WebViewActivity"/>
+        <activity
+            android:name=".ui.screen.userDetails.UserDetailsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity android:name=".ui.screen.webView.WebViewActivity" />
+        <activity
+            android:name=".ui.screen.repositoryDetails.RepositoryDetailsActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

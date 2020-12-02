@@ -20,14 +20,18 @@ class RepositoryMapper @Inject internal constructor(private val ownerMapper: Own
             return null
         }
         return Repository(repositoryEntity.id,
+            repositoryEntity.name,
             repositoryEntity.fullName,
             repositoryEntity.description,
+            repositoryEntity.htmlUrl,
             repositoryEntity.forks,
             repositoryEntity.openIssues,
             repositoryEntity.watchers,
             repositoryEntity.updatedAt,
+            repositoryEntity.createdAt,
             ownerMapper.transform(repositoryEntity.owner),
-            repositoryEntity.language)
+            repositoryEntity.language,
+            repositoryEntity.subscribersCount)
     }
 
     /**

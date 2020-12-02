@@ -16,4 +16,10 @@ interface ApiService {
     @GET("users/{username}")
     fun getUserDetails(@Path("username") username: String): Observable<OwnerEntity>
 
+    @GET("repos/{username}/{repository}")
+    fun getRepository(
+        @Path("username") username: String,
+        @Path("repository") repository: String,
+    ): Observable<RepositoryEntity>
+
 }

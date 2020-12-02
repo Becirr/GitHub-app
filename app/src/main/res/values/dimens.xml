@@ -37,6 +37,8 @@
     <dimen name="radius_xlarge">48dp</dimen>
 
     <!-- icons -->
+    <dimen name="icon_size_small">16dp</dimen>
+    <dimen name="icon_size_normal">24dp</dimen>
     <dimen name="icon_size_medium">36dp</dimen>
 
     <!-- login -->
@@ -54,5 +56,11 @@
 
     <!-- progress size -->
     <dimen name="progress_size">60dp</dimen>
+
+    <!-- repository_details -->
+    <dimen name="repository_details_background_size">200dp</dimen>
+    <dimen name="repository_details_owner_avatar_size">100dp</dimen>
+    <dimen name="repository_details_owner_avatar_margin_top">50dp</dimen>
+    <dimen name="repository_details_owner_name_margin_top">40dp</dimen>
 
 </resources>

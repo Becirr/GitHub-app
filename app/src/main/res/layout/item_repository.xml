@@ -24,6 +24,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_toEndOf="@id/thumbnail"
+                android:background="?attr/selectableItemBackground"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textColor="@color/color_text_secondary"
@@ -37,6 +38,7 @@
                 android:layout_marginStart="@dimen/small_margin"
                 android:layout_marginTop="@dimen/xsmall_margin"
                 android:layout_toEndOf="@id/thumbnail"
+                android:background="?attr/selectableItemBackground"
                 android:ellipsize="end"
                 android:maxLines="3"
                 android:textSize="@dimen/text_size_normal" />
@@ -65,17 +67,17 @@
                         android:layout_width="@dimen/repository_icons_size"
                         android:layout_height="@dimen/repository_icons_size"
                         android:layout_marginEnd="@dimen/xsmall_margin"
-                        app:srcCompat="@drawable/ic_watchers"
+                        app:srcCompat="@drawable/ic_star"
                         app:tint="@color/color_text_primary" />
 
                     <TextView
-                        android:id="@+id/watchLabel"
+                        android:id="@+id/starLabel"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="@dimen/xsmall_margin"
                         android:gravity="center_vertical"
                         android:includeFontPadding="false"
-                        android:text="@string/watch"
+                        android:text="@string/star"
                         android:textSize="@dimen/text_size_small" />
 
                     <View
@@ -85,7 +87,7 @@
                         android:background="@color/color_text_primary" />
 
                     <TextView
-                        android:id="@+id/watchersValue"
+                        android:id="@+id/starValue"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/xsmall_margin"
