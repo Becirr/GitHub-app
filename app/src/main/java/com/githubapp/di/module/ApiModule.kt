@@ -2,9 +2,11 @@ package com.githubapp.di.module
 
 import com.githubapp.Constants
 import com.githubapp.data.api.ApiService
+import com.githubapp.data.repository.AccessTokenRepositoryImpl
 import com.githubapp.data.repository.RepositoryDetailsRepositoryImpl
 import com.githubapp.data.repository.SearchRepositoryImpl
 import com.githubapp.data.repository.UserDetailsRepositoryImpl
+import com.githubapp.domain.repository.AccessTokenRepository
 import com.githubapp.domain.repository.RepositoryDetailsRepository
 import com.githubapp.domain.repository.SearchRepository
 import com.githubapp.domain.repository.UserDetailsRepository
@@ -67,6 +69,12 @@ class ApiModule {
     @Singleton
     fun provideRepositoryDetailsRepository(repositoryDetailsRepository: RepositoryDetailsRepositoryImpl): RepositoryDetailsRepository {
         return repositoryDetailsRepository
+    }
+
+    @Provides
+    @Singleton
+    fun provideAccessTokenRepository(accessTokenRepository: AccessTokenRepositoryImpl): AccessTokenRepository {
+        return accessTokenRepository
     }
 
 }

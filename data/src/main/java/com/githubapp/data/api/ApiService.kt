@@ -1,14 +1,23 @@
 package com.githubapp.data.api
 
+import com.githubapp.data.entity.AccessTokenEntity
 import com.githubapp.data.entity.OwnerEntity
 import com.githubapp.data.entity.RepositoryEntity
 import com.githubapp.data.entity.ResponseListDataEntity
 import io.reactivex.rxjava3.core.Observable
-import retrofit2.http.GET
-import retrofit2.http.Path
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
+
+    @Headers("Accept: application/json")
+    @POST
+    @FormUrlEncoded
+    fun getAccessToken(
+        @Url url: String,
+        @Field("client_id") clientId: String,
+        @Field("client_secret") clientSecret: String,
+        @Field("code") code: String,
+    ): Observable<AccessTokenEntity>
 
     @GET("search/repositories")
     fun searchRepositories(
@@ -24,5 +33,8 @@ interface ApiService {
         @Path("username") username: String,
         @Path("repository") repository: String,
     ): Observable<RepositoryEntity>
+
+    @GET("user")
+    fun getUser(): Observable<OwnerEntity>
 
 }

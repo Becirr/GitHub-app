@@ -5,7 +5,7 @@
     <string name="password">Password</string>
     <string name="sign_in">Sign in</string>
     <string name="search">Search</string>
-    <string name="search_or_jump_to">Search or jump to...</string>
+    <string name="search_or_jump_to">Search or jump to…</string>
     <string name="watch">Watch</string>
     <string name="star">Star</string>
     <string name="fork">Fork</string>
@@ -30,6 +30,8 @@
     <string name="sort_updated">Updated</string>
 
     <string name="query_is_empty">Query is empty</string>
+
+    <string name="authorizing">Authorizing …</string>
 
     <!-- Error Messages -->
     <string name="error_malformed_json">Oops! We hit an error. Try again later!</string>

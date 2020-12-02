@@ -4,9 +4,12 @@ import com.githubapp.data.api.ApiService
 import com.githubapp.di.module.ApiModule
 import com.githubapp.di.module.AppModule
 import com.githubapp.di.module.HttpModule
+import com.githubapp.domain.repository.AccessTokenRepository
 import com.githubapp.domain.repository.RepositoryDetailsRepository
 import com.githubapp.domain.repository.SearchRepository
 import com.githubapp.domain.repository.UserDetailsRepository
+import com.githubapp.ui.screen.login.LoginComponent
+import com.githubapp.ui.screen.login.LoginModule
 import com.githubapp.ui.screen.repositoryDetails.RepositoryDetailsComponent
 import com.githubapp.ui.screen.repositoryDetails.RepositoryDetailsModule
 import com.githubapp.ui.screen.searchRepositories.SearchRepositoriesComponent
@@ -30,6 +33,7 @@ interface AppComponent {
     fun searchRepository(): SearchRepository
     fun userDetailsRepository(): UserDetailsRepository
     fun repositoryDetailsRepository(): RepositoryDetailsRepository
+    fun accessTokenRepository(): AccessTokenRepository
 
     /**
      * SubComponents
@@ -38,5 +42,6 @@ interface AppComponent {
     fun plus(module: UserDetailsModule): UserDetailsComponent
     fun plus(module: WebViewModule): WebViewComponent
     fun plus(module: RepositoryDetailsModule): RepositoryDetailsComponent
+    fun plus(module: LoginModule): LoginComponent
 
 }

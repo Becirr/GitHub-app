@@ -1,5 +1,7 @@
 package com.githubapp.ui.screen.searchRepositories
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,9 +13,11 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.githubapp.Constants
 import com.githubapp.R
 import com.githubapp.databinding.ActivitySearchRepositoriesBinding
 import com.githubapp.di.component.AppComponent
+import com.githubapp.domain.model.AccessToken
 import com.githubapp.domain.model.Repository
 import com.githubapp.ui.adapter.RepositoryAdapter
 import com.githubapp.ui.screen.base.BaseActivity
@@ -30,6 +34,8 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
 
     private var sortItemId = R.id.sortByBestMatch
 
+    private var code: String? = null
+
     override val layoutId: Int
         get() = R.layout.activity_search_repositories
 
@@ -39,8 +45,27 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        code = intent.getStringExtra(CODE)
+        if (code != null) {
+            searchRepositoriesPresenter.getAccessToken(Constants.CLIENT_ID,
+                Constants.CLIENT_SECRET,
+                code!!)
+        }
         setupUI()
         setupListeners()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val uri = intent.data
+        if (uri != null && uri.toString().startsWith(Constants.REDIRECT_URL)) {
+            val code = uri.getQueryParameter("code")
+            if (code != null) {
+                searchRepositoriesPresenter.getAccessToken(Constants.CLIENT_ID,
+                    Constants.CLIENT_SECRET,
+                    code)
+            }
+        }
     }
 
     private fun setupUI() {
@@ -132,9 +157,27 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
         repositoryAdapter?.setItems(repositories)
     }
 
+    override fun handleAccessToken(accessToken: AccessToken) {
+
+    }
+
     override fun onDestroy() {
         super.onDestroy()
         searchRepositoriesPresenter.onDetach()
+    }
+
+    companion object {
+
+        const val CODE = "Code"
+
+        fun open(
+            context: Context,
+            code: String,
+        ) {
+            val intent = Intent(context, SearchRepositoriesActivity::class.java)
+            intent.putExtra(CODE, code)
+            context.startActivity(intent)
+        }
     }
 
 }

@@ -1,93 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:gravity="center"
-    android:orientation="vertical"
-    tools:context=".LoginActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <androidx.appcompat.widget.AppCompatImageView
-        android:id="@+id/logo"
-        android:layout_width="@dimen/logo_icon_size"
-        android:layout_height="@dimen/logo_icon_size"
-        android:layout_marginBottom="@dimen/xlarge_margin"
-        app:srcCompat="@drawable/ic_github_logo" />
-
-    <TextView
-        android:id="@+id/user"
-        style="@style/HeadingStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/large_margin"
-        android:text="@string/sign_in_to_github" />
-
-    <RelativeLayout
+    <FrameLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/large_margin"
-        android:layout_marginEnd="@dimen/large_margin"
-        android:background="@drawable/login_background_form"
-        android:paddingStart="@dimen/large_padding"
-        android:paddingTop="@dimen/xlarge_padding"
-        android:paddingEnd="@dimen/large_padding"
-        android:paddingBottom="@dimen/xlarge_padding">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        android:gravity="center"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/usernameOrEmailText"
-            style="@style/NormalText.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/username_or_email" />
-
-        <EditText
-            android:id="@+id/usernameField"
+        <WebView
+            android:id="@+id/webview"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/login_input_field_height"
-            android:layout_below="@id/usernameOrEmailText"
-            android:layout_marginTop="@dimen/small_margin"
-            android:background="@drawable/input_field_background"
-            android:includeFontPadding="false"
-            android:inputType="textEmailAddress"
-            android:padding="@dimen/small_padding"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_normal" />
+            android:layout_height="match_parent" />
 
-        <TextView
-            android:id="@+id/passwordText"
-            style="@style/NormalText.Bold"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/usernameField"
-            android:layout_marginTop="@dimen/default_margin"
-            android:text="@string/password" />
 
-        <EditText
-            android:id="@+id/passwordField"
+        <LinearLayout
+            android:id="@+id/authorizingLayout"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/login_input_field_height"
-            android:layout_below="@id/passwordText"
-            android:layout_marginTop="@dimen/small_margin"
-            android:background="@drawable/input_field_background"
-            android:includeFontPadding="false"
-            android:inputType="textPassword"
-            android:padding="@dimen/small_padding"
-            android:textColor="@color/black"
-            android:textSize="@dimen/text_size_normal" />
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:visibility="gone"
+            android:orientation="vertical">
 
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/signInButton"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/login_input_field_height"
-            android:layout_below="@id/passwordField"
-            android:layout_marginTop="@dimen/default_margin"
-            android:background="@drawable/sign_in_button_background"
-            android:text="@string/sign_in"
-            android:textColor="@color/white"
-            app:backgroundTint="@null" />
+            <TextView
+                android:id="@+id/user"
+                style="@style/HeadingStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="@dimen/large_margin"
+                android:text="@string/authorizing" />
 
-    </RelativeLayout>
+            <ProgressBar
+                android:id="@+id/progress"
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size"
+                android:layout_gravity="center"
+                android:indeterminate="true" />
 
-</LinearLayout>
+        </LinearLayout>
+
+
+    </FrameLayout>
+</layout>
