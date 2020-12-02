@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
+import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -13,6 +14,7 @@ import com.githubapp.di.component.AppComponent
 import com.githubapp.domain.model.Repository
 import com.githubapp.ui.adapter.RepositoryAdapter
 import com.githubapp.ui.screen.base.BaseActivity
+import com.githubapp.util.DeviceUtils
 import javax.inject.Inject
 
 class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBinding>(),
@@ -71,6 +73,9 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (textView != null) {
                             searchRepositoriesPresenter.searchRepositories(textView.text.toString())
+                            viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
+                            viewDataBinding?.progress?.visibility = View.VISIBLE
+                            repositoryAdapter?.clear()
                         }
                         return true
                     }
@@ -81,6 +86,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     }
 
     override fun showRepositories(repositories: List<Repository>) {
+        viewDataBinding?.progress?.visibility = View.GONE
         repositoryAdapter?.setItems(repositories)
     }
 

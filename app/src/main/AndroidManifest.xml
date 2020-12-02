@@ -20,7 +20,7 @@
             android:windowSoftInputMode="adjustResize" />
         <activity
             android:name=".ui.screen.searchRepositories.SearchRepositoriesActivity"
-            android:configChanges="orientation"
+            android:configChanges="orientation|keyboardHidden"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
