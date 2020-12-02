@@ -33,6 +33,8 @@
 
     <string name="authorizing">Authorizing …</string>
 
+    <string name="welcome">Welcome %s</string>
+
     <!-- Error Messages -->
     <string name="error_malformed_json">Oops! We hit an error. Try again later!</string>
     <string name="error_timeout">Oooops! We could not capture your request in time. Please try again!</string>

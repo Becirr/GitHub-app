@@ -2,11 +2,13 @@ package com.githubapp.di.module
 
 import com.githubapp.BuildConfig
 import com.githubapp.data.api.interceptor.AuthenticationInterceptor
-import javax.inject.Singleton
+import com.githubapp.data.cache.preferences.AppPreferencesManager
+import com.githubapp.data.cache.preferences.PreferencesManager
 import dagger.Module
 import dagger.Provides
-import okhttp3.logging.HttpLoggingInterceptor
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import javax.inject.Singleton
 
 @Module
 class HttpModule {
@@ -28,12 +30,18 @@ class HttpModule {
     @Singleton
     fun provideOkHttpClient(
         httpLoggingInterceptor: HttpLoggingInterceptor,
-        authenticationInterceptor: AuthenticationInterceptor
+        authenticationInterceptor: AuthenticationInterceptor,
     ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(authenticationInterceptor)
             .addInterceptor(httpLoggingInterceptor)
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun providePreferencesManager(appPreferencesManager: AppPreferencesManager): PreferencesManager {
+        return appPreferencesManager
     }
 
 }

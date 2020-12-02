@@ -4,17 +4,20 @@ import com.githubapp.Constants
 import com.githubapp.di.scope.PerActivity
 import com.githubapp.domain.exception.ErrorMapper
 import com.githubapp.domain.model.AccessToken
+import com.githubapp.domain.model.Owner
 import com.githubapp.domain.model.Repository
 import com.githubapp.domain.useCase.AccessTokenUseCase
 import com.githubapp.domain.useCase.DefaultObserver
 import com.githubapp.domain.useCase.SearchRepositoriesUseCase
+import com.githubapp.domain.useCase.UserUseCase
 import com.githubapp.ui.screen.base.BasePresenter
 import javax.inject.Inject
 
 @PerActivity
 class SearchRepositoriesPresenter @Inject internal constructor(
     private val searchRepositoriesUseCase: SearchRepositoriesUseCase,
-    private val accessTokenUseCase: AccessTokenUseCase
+    private val accessTokenUseCase: AccessTokenUseCase,
+    private val userUseCase: UserUseCase
 ) :
     BasePresenter<SearchRepositoriesView>() {
 
@@ -45,6 +48,18 @@ class SearchRepositoriesPresenter @Inject internal constructor(
                 view?.showError(ErrorMapper(e as Exception))
             }
         }, AccessTokenUseCase.Params(Constants.ACCESS_TOKEN_URL, clientId, clientSecret, code))
+    }
+
+    fun getUser() {
+        userUseCase.execute(object : DefaultObserver<Owner>() {
+            override fun onNext(t: Owner) {
+                view?.showUser(t)
+            }
+
+            override fun onError(e: Throwable) {
+                view?.showError(ErrorMapper(e as Exception))
+            }
+        }, Any())
     }
 
 }

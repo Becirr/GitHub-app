@@ -1,13 +1,11 @@
 package com.githubapp.di.component
 
 import com.githubapp.data.api.ApiService
+import com.githubapp.data.cache.preferences.PreferencesManager
 import com.githubapp.di.module.ApiModule
 import com.githubapp.di.module.AppModule
 import com.githubapp.di.module.HttpModule
-import com.githubapp.domain.repository.AccessTokenRepository
-import com.githubapp.domain.repository.RepositoryDetailsRepository
-import com.githubapp.domain.repository.SearchRepository
-import com.githubapp.domain.repository.UserDetailsRepository
+import com.githubapp.domain.repository.*
 import com.githubapp.ui.screen.login.LoginComponent
 import com.githubapp.ui.screen.login.LoginModule
 import com.githubapp.ui.screen.repositoryDetails.RepositoryDetailsComponent
@@ -25,6 +23,7 @@ import javax.inject.Singleton
 @Component(modules = [AppModule::class, HttpModule::class, ApiModule::class])
 interface AppComponent {
 
+    fun preferencesManager(): PreferencesManager
     fun apiService(): ApiService
 
     /**
@@ -34,6 +33,7 @@ interface AppComponent {
     fun userDetailsRepository(): UserDetailsRepository
     fun repositoryDetailsRepository(): RepositoryDetailsRepository
     fun accessTokenRepository(): AccessTokenRepository
+    fun userRepository(): UserRepository
 
     /**
      * SubComponents

@@ -2,14 +2,8 @@ package com.githubapp.di.module
 
 import com.githubapp.Constants
 import com.githubapp.data.api.ApiService
-import com.githubapp.data.repository.AccessTokenRepositoryImpl
-import com.githubapp.data.repository.RepositoryDetailsRepositoryImpl
-import com.githubapp.data.repository.SearchRepositoryImpl
-import com.githubapp.data.repository.UserDetailsRepositoryImpl
-import com.githubapp.domain.repository.AccessTokenRepository
-import com.githubapp.domain.repository.RepositoryDetailsRepository
-import com.githubapp.domain.repository.SearchRepository
-import com.githubapp.domain.repository.UserDetailsRepository
+import com.githubapp.data.repository.*
+import com.githubapp.domain.repository.*
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import dagger.Module
@@ -75,6 +69,12 @@ class ApiModule {
     @Singleton
     fun provideAccessTokenRepository(accessTokenRepository: AccessTokenRepositoryImpl): AccessTokenRepository {
         return accessTokenRepository
+    }
+
+    @Provides
+    @Singleton
+    fun provideUserRepository(userRepository: UserRepositoryImpl): UserRepository {
+        return userRepository
     }
 
 }

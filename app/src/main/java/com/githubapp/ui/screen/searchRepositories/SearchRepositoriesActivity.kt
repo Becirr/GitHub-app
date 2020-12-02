@@ -13,11 +13,15 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.githubapp.Constants
 import com.githubapp.R
+import com.githubapp.data.cache.preferences.PreferencesManager
 import com.githubapp.databinding.ActivitySearchRepositoriesBinding
 import com.githubapp.di.component.AppComponent
 import com.githubapp.domain.model.AccessToken
+import com.githubapp.domain.model.Owner
 import com.githubapp.domain.model.Repository
 import com.githubapp.ui.adapter.RepositoryAdapter
 import com.githubapp.ui.screen.base.BaseActivity
@@ -29,6 +33,9 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
 
     @Inject
     lateinit var searchRepositoriesPresenter: SearchRepositoriesPresenter
+
+    @Inject
+    lateinit var preferencesManager: PreferencesManager
 
     private var repositoryAdapter: RepositoryAdapter? = null
 
@@ -61,6 +68,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
         if (uri != null && uri.toString().startsWith(Constants.REDIRECT_URL)) {
             val code = uri.getQueryParameter("code")
             if (code != null) {
+                viewDataBinding?.progress?.visibility = View.VISIBLE
                 searchRepositoriesPresenter.getAccessToken(Constants.CLIENT_ID,
                     Constants.CLIENT_SECRET,
                     code)
@@ -133,6 +141,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 Toast.LENGTH_LONG).show()
         }
         searchRepositoriesPresenter.searchRepositories(query, getSortString())
+        viewDataBinding?.userLayout?.visibility = View.GONE
         viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
         viewDataBinding?.progress?.visibility = View.VISIBLE
         repositoryAdapter?.clear()
@@ -158,7 +167,20 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     }
 
     override fun handleAccessToken(accessToken: AccessToken) {
+        preferencesManager.setAccessToken(accessToken.accessToken)
+        searchRepositoriesPresenter.getUser()
+    }
 
+    override fun showUser(owner: Owner) {
+        viewDataBinding?.welcome?.text = resources.getString(R.string.welcome, owner.login)
+        if (viewDataBinding != null) {
+            Glide.with(this)
+                .load(owner.avatarUrl)
+                .circleCrop()
+                .transition(DrawableTransitionOptions().crossFade(300))
+                .into(viewDataBinding!!.thumbnail)
+        }
+        viewDataBinding?.userLayout?.animate()?.alpha(1f)?.start()
     }
 
     override fun onDestroy() {
