@@ -9,8 +9,8 @@ import javax.inject.Inject
 class SearchRemoteDataSource @Inject internal constructor(private val apiService: ApiService) :
     SearchDataSource {
 
-    override fun searchRepositories(q: String): Observable<List<RepositoryEntity>> {
-        return apiService.searchRepositories(q).map { it.items }
+    override fun searchRepositories(q: String, sort: String?): Observable<List<RepositoryEntity>> {
+        return apiService.searchRepositories(q, sort).map { it.items }
     }
 
 }

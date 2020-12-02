@@ -11,7 +11,10 @@ import retrofit2.http.Query
 interface ApiService {
 
     @GET("search/repositories")
-    fun searchRepositories(@Query("q") q: String): Observable<ResponseListDataEntity<RepositoryEntity>>
+    fun searchRepositories(
+        @Query("q") q: String,
+        @Query("sort") sort: String?,
+    ): Observable<ResponseListDataEntity<RepositoryEntity>>
 
     @GET("users/{username}")
     fun getUserDetails(@Path("username") username: String): Observable<OwnerEntity>

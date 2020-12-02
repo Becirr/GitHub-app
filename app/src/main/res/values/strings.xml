@@ -24,6 +24,13 @@
     <string name="updated_new_line">Updated\n %s</string>
     <string name="created_new_line">Created\n %s</string>
 
+    <string name="best_match">Best match</string>
+    <string name="stars">Stars</string>
+    <string name="forks">Forks</string>
+    <string name="sort_updated">Updated</string>
+
+    <string name="query_is_empty">Query is empty</string>
+
     <!-- Error Messages -->
     <string name="error_malformed_json">Oops! We hit an error. Try again later!</string>
     <string name="error_timeout">Oooops! We could not capture your request in time. Please try again!</string>

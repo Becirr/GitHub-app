@@ -17,7 +17,7 @@ class SearchRepositoriesPresenter @Inject internal constructor(private val searc
         subscribe(searchRepositoriesUseCase)
     }
 
-    fun searchRepositories(q: String) {
+    fun searchRepositories(q: String, sort: String?) {
         searchRepositoriesUseCase.execute(object : DefaultObserver<List<Repository>>() {
             override fun onNext(t: List<Repository>) {
                 view?.showRepositories(t)
@@ -26,7 +26,7 @@ class SearchRepositoriesPresenter @Inject internal constructor(private val searc
             override fun onError(e: Throwable) {
                 view?.showError(ErrorMapper(e as Exception))
             }
-        }, SearchRepositoriesUseCase.Params(q))
+        }, SearchRepositoriesUseCase.Params(q, sort))
     }
 
 }

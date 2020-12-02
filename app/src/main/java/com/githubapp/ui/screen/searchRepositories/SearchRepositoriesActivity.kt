@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.KeyEvent
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.githubapp.R
 import com.githubapp.databinding.ActivitySearchRepositoriesBinding
@@ -24,6 +27,8 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     lateinit var searchRepositoriesPresenter: SearchRepositoriesPresenter
 
     private var repositoryAdapter: RepositoryAdapter? = null
+
+    private var sortItemId = R.id.sortByBestMatch
 
     override val layoutId: Int
         get() = R.layout.activity_search_repositories
@@ -49,6 +54,20 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
         searchRepositoriesPresenter.onAttach(this)
     }
 
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.sort_menu, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId != R.id.sort) {
+            sortItemId = item.itemId
+            item.isChecked = true
+            search(viewDataBinding?.search?.text.toString())
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
     private fun setupListeners() {
         viewDataBinding?.search?.addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -72,10 +91,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 ): Boolean {
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (textView != null) {
-                            searchRepositoriesPresenter.searchRepositories(textView.text.toString())
-                            viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
-                            viewDataBinding?.progress?.visibility = View.VISIBLE
-                            repositoryAdapter?.clear()
+                            search(textView.text.toString())
                         }
                         return true
                     }
@@ -83,6 +99,32 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 }
             }
         )
+    }
+
+    private fun search(query: String) {
+        if (query.isEmpty()) {
+            return Toast.makeText(this,
+                resources.getString(R.string.query_is_empty),
+                Toast.LENGTH_LONG).show()
+        }
+        searchRepositoriesPresenter.searchRepositories(query, getSortString())
+        viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
+        viewDataBinding?.progress?.visibility = View.VISIBLE
+        repositoryAdapter?.clear()
+    }
+
+    private fun getSortString(): String? {
+        return when (sortItemId) {
+            R.id.sortByStars -> "stars"
+            R.id.sortByForks -> "forks"
+            R.id.sortByUpdated -> "updated"
+            R.id.sortByBestMatch -> {
+                null
+            }
+            else -> {
+                null
+            }
+        }
     }
 
     override fun showRepositories(repositories: List<Repository>) {

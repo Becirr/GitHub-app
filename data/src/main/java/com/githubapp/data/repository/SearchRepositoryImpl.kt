@@ -11,11 +11,11 @@ import javax.inject.Singleton
 @Singleton
 class SearchRepositoryImpl @Inject internal constructor(
     private val remoteDataSource: SearchRemoteDataSource,
-    private val repositoryMapper: RepositoryMapper
+    private val repositoryMapper: RepositoryMapper,
 ) : SearchRepository {
 
-    override fun searchRepositories(q: String): Observable<List<Repository>> {
-        return remoteDataSource.searchRepositories(q).map { repositoryMapper.transform(it) }
+    override fun searchRepositories(q: String, sort: String?): Observable<List<Repository>> {
+        return remoteDataSource.searchRepositories(q, sort).map { repositoryMapper.transform(it) }
     }
 
 }

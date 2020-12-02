@@ -9,11 +9,12 @@ class SearchRepositoriesUseCase @Inject internal constructor(private val searchR
     UseCase<List<Repository>, SearchRepositoriesUseCase.Params>() {
 
     override fun buildUseCaseObservable(params: Params): Observable<List<Repository>> {
-        return searchRepository.searchRepositories(params.q)
+        return searchRepository.searchRepositories(params.q, params.sort)
     }
 
     class Params(
-        val q: String
+        val q: String,
+        val sort: String?,
     )
 
 }

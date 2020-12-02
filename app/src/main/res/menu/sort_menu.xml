@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/sort"
+        android:icon="@drawable/ic_sort"
+        android:title=""
+        app:showAsAction="always">
+
+        <menu>
+
+            <group android:checkableBehavior="single">
+                <item
+                    android:id="@+id/sortByBestMatch"
+                    android:checked="true"
+                    android:title="@string/best_match" />
+                <item
+                    android:id="@+id/sortByStars"
+                    android:title="@string/stars" />
+                <item
+                    android:id="@+id/sortByForks"
+                    android:title="@string/forks" />
+                <item
+                    android:id="@+id/sortByUpdated"
+                    android:title="@string/sort_updated" />
+            </group>
+
+        </menu>
+
+    </item>
+
+</menu>
