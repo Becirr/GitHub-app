@@ -44,91 +44,89 @@ class RepositoryDetailsActivity : BaseActivity<ActivityRepositoryDetailsBinding>
             repositoryDetailsPresenter.getRepositoryDetails(repository!!.owner!!.login,
                 repository!!.name)
         }
-        viewDataBinding?.name?.text = repository?.owner?.login
-        viewDataBinding?.repoName?.text = repository?.name
-        if (viewDataBinding != null) {
-            Glide.with(this)
-                .load(repository?.owner?.avatarUrl)
-                .circleCrop()
-                .transition(DrawableTransitionOptions().crossFade(300))
-                .into(viewDataBinding!!.thumbnail)
-        }
-        viewDataBinding?.starValue?.text = repository?.watchers.toString()
-        viewDataBinding?.forkValue?.text = repository?.forks.toString()
-        viewDataBinding?.issueValue?.text = repository?.openIssues.toString()
+        viewDataBinding.name.text = repository?.owner?.login
+        viewDataBinding.repoName.text = repository?.name
+        Glide.with(this)
+            .load(repository?.owner?.avatarUrl)
+            .circleCrop()
+            .transition(DrawableTransitionOptions().crossFade(300))
+            .into(viewDataBinding.thumbnail)
+        viewDataBinding.starValue.text = repository?.watchers.toString()
+        viewDataBinding.forkValue.text = repository?.forks.toString()
+        viewDataBinding.issueValue.text = repository?.openIssues.toString()
         repository?.owner?.login?.let { repositoryDetailsPresenter.getUserDetails(it) }
     }
 
     private fun setupListeners() {
-        viewDataBinding?.back?.setOnClickListener { super.onBackPressed() }
-        viewDataBinding?.viewDetails?.setOnClickListener {
+        viewDataBinding.back.setOnClickListener { super.onBackPressed() }
+        viewDataBinding.viewDetails.setOnClickListener {
             WebViewActivity.open(this, repository?.htmlUrl)
         }
-        viewDataBinding?.thumbnail?.setOnClickListener {
+        viewDataBinding.thumbnail.setOnClickListener {
             repository?.owner?.let { UserDetailsActivity.open(this, it) }
         }
     }
 
     override fun showUserDetails(owner: Owner) {
-        viewDataBinding?.name?.animate()?.alpha(1f)
-        viewDataBinding?.thumbnail?.animate()?.alpha(1f)
+        viewDataBinding.name.animate()?.alpha(1f)
+        viewDataBinding.thumbnail.animate()?.alpha(1f)
         if (!owner.location.isNullOrEmpty()) {
-            viewDataBinding?.location?.text = owner.location
-            viewDataBinding?.location?.visibility = View.VISIBLE
-            viewDataBinding?.iconLocation?.visibility = View.VISIBLE
-            viewDataBinding?.location?.animate()?.alpha(1f)?.start()
-            viewDataBinding?.iconLocation?.animate()?.alpha(1f)?.start()
+            viewDataBinding.location.text = owner.location
+            viewDataBinding.location.visibility = View.VISIBLE
+            viewDataBinding.iconLocation.visibility = View.VISIBLE
+            viewDataBinding.location.animate()?.alpha(1f)?.start()
+            viewDataBinding.iconLocation.animate()?.alpha(1f)?.start()
         } else {
-            viewDataBinding?.location?.visibility = View.GONE
-            viewDataBinding?.iconLocation?.visibility = View.GONE
+            viewDataBinding.location.visibility = View.GONE
+            viewDataBinding.iconLocation.visibility = View.GONE
         }
         if (!owner.email.isNullOrEmpty()) {
-            viewDataBinding?.email?.text = owner.email
-            viewDataBinding?.email?.visibility = View.VISIBLE
-            viewDataBinding?.iconEmail?.visibility = View.VISIBLE
-            viewDataBinding?.email?.animate()?.alpha(1f)?.start()
-            viewDataBinding?.iconEmail?.animate()?.alpha(1f)?.start()
+            viewDataBinding.email.text = owner.email
+            viewDataBinding.email.visibility = View.VISIBLE
+            viewDataBinding.iconEmail.visibility = View.VISIBLE
+            viewDataBinding.email.animate()?.alpha(1f)?.start()
+            viewDataBinding.iconEmail.animate()?.alpha(1f)?.start()
         } else {
-            viewDataBinding?.email?.visibility = View.GONE
-            viewDataBinding?.iconEmail?.visibility = View.GONE
+            viewDataBinding.email.visibility = View.GONE
+            viewDataBinding.iconEmail.visibility = View.GONE
         }
         if (!owner.company.isNullOrEmpty()) {
-            viewDataBinding?.company?.text = owner.company
-            viewDataBinding?.company?.visibility = View.VISIBLE
-            viewDataBinding?.iconCompany?.visibility = View.VISIBLE
-            viewDataBinding?.company?.animate()?.alpha(1f)?.start()
-            viewDataBinding?.iconCompany?.animate()?.alpha(1f)?.start()
+            viewDataBinding.company.text = owner.company
+            viewDataBinding.company.visibility = View.VISIBLE
+            viewDataBinding.iconCompany.visibility = View.VISIBLE
+            viewDataBinding.company.animate()?.alpha(1f)?.start()
+            viewDataBinding.iconCompany.animate()?.alpha(1f)?.start()
         } else {
-            viewDataBinding?.company?.visibility = View.GONE
-            viewDataBinding?.iconCompany?.visibility = View.GONE
+            viewDataBinding.company.visibility = View.GONE
+            viewDataBinding.iconCompany.visibility = View.GONE
         }
-        viewDataBinding?.numbersLayout?.animate()?.alpha(1f)?.start()
-        viewDataBinding?.repoName?.animate()?.alpha(1f)
+        viewDataBinding.numbersLayout.animate()?.alpha(1f)?.start()
+        viewDataBinding.repoName.animate()?.alpha(1f)
         if (!repository?.description.isNullOrEmpty()) {
-            viewDataBinding?.description?.text = repository?.description
-            viewDataBinding?.description?.visibility = View.VISIBLE
-            viewDataBinding?.description?.animate()?.alpha(1f)?.start()
+            viewDataBinding.description.text = repository?.description
+            viewDataBinding.description.visibility = View.VISIBLE
+            viewDataBinding.description.animate()?.alpha(1f)?.start()
         } else {
-            viewDataBinding?.description?.visibility = View.GONE
+            viewDataBinding.description.visibility = View.GONE
         }
-        viewDataBinding?.update?.text =
+        viewDataBinding.update.text =
             repository?.updatedAt?.getFormattedDate(this, R.string.updated_new_line)
-        viewDataBinding?.created?.text =
+        viewDataBinding.created.text =
             repository?.createdAt?.getFormattedDate(this, R.string.created_new_line)
-        viewDataBinding?.updatedCard?.animate()?.alpha(1f)?.start()
-        viewDataBinding?.createdCard?.animate()?.alpha(1f)?.start()
+        viewDataBinding.updatedCard.animate()?.alpha(1f)?.start()
+        viewDataBinding.createdCard.animate()?.alpha(1f)?.start()
         if (!repository?.language.isNullOrEmpty()) {
-            viewDataBinding?.language?.text = repository?.language
-            viewDataBinding?.languageCard?.visibility = View.VISIBLE
-            viewDataBinding?.languageCard?.animate()?.alpha(1f)?.start()
+            viewDataBinding.language.text = repository?.language
+            viewDataBinding.languageCard.visibility = View.VISIBLE
+            viewDataBinding.languageCard.animate()?.alpha(1f)?.start()
         } else {
-            viewDataBinding?.languageCard?.visibility = View.GONE
+            viewDataBinding.languageCard.visibility = View.GONE
         }
-        viewDataBinding?.viewDetailsCard?.animate()?.alpha(1f)?.start()
+        viewDataBinding.viewDetailsCard.animate()?.alpha(1f)?.start()
     }
 
     override fun showRepositoryDetails(repository: Repository) {
-        viewDataBinding?.watchValue?.text = repository.subscribersCount.toString()
+        viewDataBinding.watchValue.text = repository.subscribersCount.toString()
     }
 
     override fun onDestroy() {

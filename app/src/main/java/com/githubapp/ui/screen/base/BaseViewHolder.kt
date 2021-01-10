@@ -3,7 +3,6 @@ package com.githubapp.ui.screen.base
 import android.content.Context
 import android.graphics.Typeface
 import android.graphics.drawable.Drawable
-import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.ViewDataBinding
@@ -23,7 +22,7 @@ abstract class BaseViewHolder<T> protected constructor(
         this.item = item
 
         // OnClickListener
-        itemView.setOnClickListener { v: View? ->
+        itemView.setOnClickListener {
             onClickListener?.onClick(item)
         }
     }
@@ -31,7 +30,7 @@ abstract class BaseViewHolder<T> protected constructor(
     fun onDetachFromWindow() {}
 
     protected val adapterSize: Int
-        protected get() = adapter?.itemCount ?: 0
+        get() = adapter?.itemCount ?: 0
 
     protected fun getContext(): Context {
         return itemView.context

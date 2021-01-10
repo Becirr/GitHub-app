@@ -12,7 +12,7 @@ import com.githubapp.domain.exception.Error
 import com.githubapp.exception.ErrorFactory
 import javax.inject.Inject
 
-abstract class BaseActivity<T : ViewDataBinding?> : AppCompatActivity(), MvpView {
+abstract class BaseActivity<T : ViewDataBinding> : AppCompatActivity(), MvpView {
 
     @Inject
     protected lateinit var errorFactory: ErrorFactory
@@ -20,8 +20,7 @@ abstract class BaseActivity<T : ViewDataBinding?> : AppCompatActivity(), MvpView
     /**
      * @return layout binding
      */
-    protected var viewDataBinding: T? = null
-        private set
+    protected lateinit var viewDataBinding: T
 
     /**
      * @return layout resource id

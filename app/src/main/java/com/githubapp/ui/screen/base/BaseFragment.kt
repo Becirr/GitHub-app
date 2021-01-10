@@ -13,15 +13,14 @@ import com.githubapp.App
 import com.githubapp.di.component.AppComponent
 import com.githubapp.domain.exception.Error
 
-abstract class BaseFragment<T : ViewDataBinding?> : Fragment(), MvpView {
+abstract class BaseFragment<T : ViewDataBinding> : Fragment(), MvpView {
 
     private var activity: BaseActivity<*>? = null
 
     /**
      * @return layout binding
      */
-    protected var viewDataBinding: T? = null
-        private set
+    protected lateinit var viewDataBinding: T
 
     /**
      * @return layout resource id
@@ -38,7 +37,7 @@ abstract class BaseFragment<T : ViewDataBinding?> : Fragment(), MvpView {
      * @return base activity
      */
     protected val baseActivity: BaseActivity<*>?
-        protected get() = activity
+        get() = activity
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +50,7 @@ abstract class BaseFragment<T : ViewDataBinding?> : Fragment(), MvpView {
         savedInstanceState: Bundle?,
     ): View? {
         viewDataBinding = DataBindingUtil.inflate(inflater, layoutId, container, false)
-        return viewDataBinding?.root
+        return viewDataBinding.root
     }
 
     override fun onAttach(context: Context) {

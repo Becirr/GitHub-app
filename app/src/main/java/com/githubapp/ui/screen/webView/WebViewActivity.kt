@@ -29,20 +29,20 @@ class WebViewActivity : BaseActivity<ActivityWebViewBinding>() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupUI(url: String?) {
-        viewDataBinding?.webView?.webViewClient = object : WebViewClient() {
+        viewDataBinding.webView.webViewClient = object : WebViewClient() {
 
             override fun onPageStarted(view: WebView?, url: String?, favicon: Bitmap?) {
                 super.onPageStarted(view, url, favicon)
-                viewDataBinding?.progress?.visibility = View.GONE
+                viewDataBinding.progress.visibility = View.GONE
             }
 
         }
-        val webSettings: WebSettings? = viewDataBinding?.webView?.settings
-        webSettings?.javaScriptCanOpenWindowsAutomatically = true
-        webSettings?.javaScriptEnabled = true
-        webSettings?.domStorageEnabled = true
-        viewDataBinding?.webView?.setBackgroundColor(Color.TRANSPARENT)
-        url?.let { viewDataBinding?.webView?.loadUrl(it) }
+        val webSettings: WebSettings = viewDataBinding.webView.settings
+        webSettings.javaScriptCanOpenWindowsAutomatically = true
+        webSettings.javaScriptEnabled = true
+        webSettings.domStorageEnabled = true
+        viewDataBinding.webView.setBackgroundColor(Color.TRANSPARENT)
+        url?.let { viewDataBinding.webView.loadUrl(it) }
     }
 
     companion object {

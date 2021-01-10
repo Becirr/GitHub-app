@@ -3,8 +3,6 @@ package com.githubapp.ui.screen.searchRepositories
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.Menu
 import android.view.MenuItem
@@ -71,7 +69,7 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
         if (uri != null && uri.toString().startsWith(Constants.REDIRECT_URL)) {
             val code = uri.getQueryParameter("code")
             if (code != null) {
-                viewDataBinding?.progress?.visibility = View.VISIBLE
+                viewDataBinding.progress.visibility = View.VISIBLE
                 searchRepositoriesPresenter.getAccessToken(Constants.CLIENT_ID,
                     Constants.CLIENT_SECRET,
                     code)
@@ -81,12 +79,12 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
 
     private fun setupUI() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
-        setSupportActionBar(viewDataBinding?.toolbar)
+        setSupportActionBar(viewDataBinding.toolbar)
         val linearLayoutManager = LinearLayoutManager(this)
         repositoryAdapter = RepositoryAdapter(this)
-        viewDataBinding?.repositoryRecycler?.layoutManager = linearLayoutManager
-        viewDataBinding?.repositoryRecycler?.setHasFixedSize(true)
-        viewDataBinding?.repositoryRecycler?.adapter = repositoryAdapter
+        viewDataBinding.repositoryRecycler.layoutManager = linearLayoutManager
+        viewDataBinding.repositoryRecycler.setHasFixedSize(true)
+        viewDataBinding.repositoryRecycler.adapter = repositoryAdapter
         searchRepositoriesPresenter.onAttach(this)
     }
 
@@ -99,26 +97,13 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
         if (item.itemId != R.id.sort) {
             sortItemId = item.itemId
             item.isChecked = true
-            search(viewDataBinding?.search?.text.toString())
+            search(viewDataBinding.search.text.toString())
         }
         return super.onOptionsItemSelected(item)
     }
 
     private fun setupListeners() {
-        viewDataBinding?.search?.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-
-            }
-
-            override fun afterTextChanged(p0: Editable?) {
-
-            }
-        })
-        viewDataBinding?.search?.setOnEditorActionListener(
+        viewDataBinding.search.setOnEditorActionListener(
             object : TextView.OnEditorActionListener {
                 override fun onEditorAction(
                     textView: TextView?,
@@ -135,14 +120,14 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 }
             }
         )
-        viewDataBinding?.thumbnail?.setOnClickListener {
+        viewDataBinding.thumbnail.setOnClickListener {
             owner?.let { UserDetailsActivity.open(this, it) }
         }
-        viewDataBinding?.home?.setOnClickListener {
-            viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
-            viewDataBinding?.repositoryRecycler?.visibility = View.GONE
+        viewDataBinding.home.setOnClickListener {
+            DeviceUtils.hideSoftKeyboard(viewDataBinding.search.context, viewDataBinding.search)
+            viewDataBinding.repositoryRecycler.visibility = View.GONE
             repositoryAdapter?.clear()
-            viewDataBinding?.userLayout?.visibility = View.VISIBLE
+            viewDataBinding.userLayout.visibility = View.VISIBLE
         }
     }
 
@@ -153,9 +138,9 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
                 Toast.LENGTH_LONG).show()
         }
         searchRepositoriesPresenter.searchRepositories(query, getSortString())
-        viewDataBinding?.userLayout?.visibility = View.GONE
-        viewDataBinding?.search?.let { DeviceUtils.hideSoftKeyboard(it.context, it) }
-        viewDataBinding?.progress?.visibility = View.VISIBLE
+        viewDataBinding.userLayout.visibility = View.GONE
+        DeviceUtils.hideSoftKeyboard(viewDataBinding.search.context, viewDataBinding.search)
+        viewDataBinding.progress.visibility = View.VISIBLE
         repositoryAdapter?.clear()
     }
 
@@ -174,9 +159,9 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
     }
 
     override fun showRepositories(repositories: List<Repository>) {
-        viewDataBinding?.userLayout?.visibility = View.GONE
-        viewDataBinding?.progress?.visibility = View.GONE
-        viewDataBinding?.repositoryRecycler?.visibility = View.VISIBLE
+        viewDataBinding.userLayout.visibility = View.GONE
+        viewDataBinding.progress.visibility = View.GONE
+        viewDataBinding.repositoryRecycler.visibility = View.VISIBLE
         repositoryAdapter?.setItems(repositories)
     }
 
@@ -187,15 +172,13 @@ class SearchRepositoriesActivity : BaseActivity<ActivitySearchRepositoriesBindin
 
     override fun showUser(owner: Owner) {
         this.owner = owner
-        viewDataBinding?.welcome?.text = resources.getString(R.string.welcome, owner.login)
-        if (viewDataBinding != null) {
-            Glide.with(this)
-                .load(owner.avatarUrl)
-                .circleCrop()
-                .transition(DrawableTransitionOptions().crossFade(300))
-                .into(viewDataBinding!!.thumbnail)
-        }
-        viewDataBinding?.userLayout?.animate()?.alpha(1f)?.start()
+        viewDataBinding.welcome.text = resources.getString(R.string.welcome, owner.login)
+        Glide.with(this)
+            .load(owner.avatarUrl)
+            .circleCrop()
+            .transition(DrawableTransitionOptions().crossFade(300))
+            .into(viewDataBinding.thumbnail)
+        viewDataBinding.userLayout.animate()?.alpha(1f)?.start()
     }
 
     override fun onDestroy() {

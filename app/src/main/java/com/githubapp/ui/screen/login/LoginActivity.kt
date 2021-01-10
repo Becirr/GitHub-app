@@ -2,7 +2,6 @@ package com.githubapp.ui.screen.login
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
@@ -29,8 +28,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
     @SuppressLint("SetJavaScriptEnabled")
     private fun setupUI() {
-        viewDataBinding?.webview?.settings?.javaScriptEnabled = true
-        viewDataBinding?.webview?.webViewClient = object : WebViewClient() {
+        viewDataBinding.webview.settings.javaScriptEnabled = true
+        viewDataBinding.webview.webViewClient = object : WebViewClient() {
 
             override fun shouldOverrideUrlLoading(
                 view: WebView?,
@@ -38,21 +37,21 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
             ): Boolean {
                 super.shouldOverrideUrlLoading(view, request)
                 if (request?.url.toString().startsWith(Constants.REDIRECT_URL)) {
-                    viewDataBinding?.webview?.visibility = View.GONE
-                    viewDataBinding?.authorizingLayout?.visibility = View.VISIBLE
+                    viewDataBinding.webview.visibility = View.GONE
+                    viewDataBinding.authorizingLayout.visibility = View.VISIBLE
                     val url = request?.url.toString()
                     var code = url.substring(url.lastIndexOf("?code=") + 1)
                     code = code.split("=")[1]
                     SearchRepositoriesActivity.open(this@LoginActivity, code)
                 } else {
-                    viewDataBinding?.authorizingLayout?.visibility = View.GONE
-                    viewDataBinding?.webview?.visibility = View.VISIBLE
+                    viewDataBinding.authorizingLayout.visibility = View.GONE
+                    viewDataBinding.webview.visibility = View.VISIBLE
                 }
                 return false
             }
 
         }
 
-        viewDataBinding?.webview?.loadUrl(Constants.AUTHORIZE_URL)
+        viewDataBinding.webview.loadUrl(Constants.AUTHORIZE_URL)
     }
 }
